@@ -19,7 +19,7 @@ export const TextToImageForm: React.FC = () => {
 
   const [formData, setFormData] = useState<StabilityAIBody>(initialFormData);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
-  const [modalSelect, setModalSelect] = useState<String | null>(null);
+  const [modelSelect, setModelSelect] = useState<String | null>(null);
 
   const updateField = <T extends keyof StabilityAIBody>(
     field: T,
@@ -45,9 +45,16 @@ export const TextToImageForm: React.FC = () => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
-      const response = await callStabilityAIAPI_StableDiffusioXL_Version_1(
-        formData
-      );
+      let response;
+      if (modelSelect === "StableDiffusionXL1.0") {
+        response = await callStabilityAIAPI_StableDiffusioXL_Version_1(
+          formData
+        );
+      } else {
+        response = await callStabilityAIAPI_StableDiffusin_Version_1_6(
+          formData
+        );
+      }
       if (response && response.artifacts && response.artifacts.length > 0) {
         // 假设图像数据以 Base64 编码的字符串返回
         const imageBase64 = response.artifacts[0].base64;
@@ -157,6 +164,18 @@ export const TextToImageForm: React.FC = () => {
                 handleTextPromptWeightChange(1, parseFloat(e.target.value))
               }
             />
+          </label>
+          <label>
+            Model Selection:
+            <select
+              value={modelSelect as string}
+              onChange={(e) => setModelSelect(e.target.value)}
+            >
+              <option value="StableDiffusionXL1.0">
+                Stable Diffusion XL 1.0
+              </option>
+              <option value="StableDiffusion1.6">Stable Diffusion 1.6</option>
+            </select>
           </label>
         </div>
         <button type="submit">Generate Image</button>
