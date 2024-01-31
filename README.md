@@ -99,7 +99,8 @@ Replace the API Key with your owns
     <td>
      Array of objects (TextPrompts) non-empty<br>
      An array of text prompts to use for generation.<br>
-    </td>
+     1.Positive Prompt:Text prompt with description of the things you want in the image to be generated<br>
+     2.Negative Prompt:Items you don't want in the image
   </tr>
 </table>
 
