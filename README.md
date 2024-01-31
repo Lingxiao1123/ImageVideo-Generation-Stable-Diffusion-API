@@ -25,6 +25,11 @@ Integrated Stable Diffusion Model:
 -  Stable Diffusion XL1.0
 -  Stable Diffusion 1.6
 
+## GET API KEY
+
+Follow stability.ai website,log in to get your personal API Key : https://platform.stability.ai/account/keys  
+Replace the API Key with your owns
+
 ### Example
 <img src="https://i.imgur.com/XX6gaT7.jpg" width="500">
 
