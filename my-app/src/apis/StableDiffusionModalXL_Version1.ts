@@ -16,7 +16,7 @@ export async function callStabilityAIAPI_StableDiffusioXL_Version_1(
   const API_URL =
     "https://api.stability.ai/v1/generation/stable-diffusion-xl-1024-v1-0/text-to-image";
 
-  // 这里需要替换为你的 API 密钥
+  // API Key
   const API_KEY = "sk-KHpO42S7tSX7st20BmkNkcyoThqWh8MlYD9vklDozRPzca7g";
 
   try {

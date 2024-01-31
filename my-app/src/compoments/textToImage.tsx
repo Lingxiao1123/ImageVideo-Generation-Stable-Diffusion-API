@@ -12,8 +12,8 @@ export const TextToImageForm: React.FC = () => {
     cfg_scale: 5,
     samples: 1,
     text_prompts: [
-      { text: "cat", weight: 1 },
-      { text: "dog", weight: -1 },
+      { text: "", weight: 1 },
+      { text: "", weight: -1 },
     ],
   };
 
@@ -56,13 +56,13 @@ export const TextToImageForm: React.FC = () => {
         );
       }
       if (response && response.artifacts && response.artifacts.length > 0) {
-        // 假设图像数据以 Base64 编码的字符串返回
+        // Assuming the image data is returned as a Base64 encoded string
         const imageBase64 = response.artifacts[0].base64;
-        // 将 Base64 编码的图像转换为数据 URL
+        // Convert Base64-encoded images to data URLs
         const imageUrl = `data:image/png;base64,${imageBase64}`;
         setImageUrl(imageUrl);
       } else {
-        // 如果响应中没有图像数据，设置 imageUrl 为 null
+        // If there is no image data in the response, set imageUrl to null
         setImageUrl(null);
       }
     } catch (error) {
@@ -145,7 +145,7 @@ export const TextToImageForm: React.FC = () => {
           </label>
         </div>
 
-        {/* 负面提示（Negative Prompt） */}
+        {/* （Negative Prompt） */}
         <div>
           <label>
             Negative Text Prompt:
