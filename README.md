@@ -33,7 +33,7 @@ Replace the API Key with your owns
 ### Example
 <img src="https://i.imgur.com/XX6gaT7.jpg" width="500">
 
-### Key Parameter
+### Key Parameter For Stable Diffusion
 <table>
   <tr>
     <td>Steps</td>
@@ -50,7 +50,7 @@ Replace the API Key with your owns
       Default: 512<br>
       Width of the image to generate, in pixels, in an increment divible by 64.<br>
 
-
+      
       Engine-specific dimension validation:
       SDXL Beta: must be between 128x128 and 512x896 (or 896x512); only one dimension can be greater than 512.
       SDXL v0.9: must be one of 1024x1024, 1152x896, 1216x832, 1344x768, 1536x640, 640x1536, 768x1344, 832x1216, or 896x1152
