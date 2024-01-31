@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# A Stable Diffusion API based Image generation web
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
