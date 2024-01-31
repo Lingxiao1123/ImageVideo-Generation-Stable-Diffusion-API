@@ -17,3 +17,10 @@ You will also see any lint errors in the console.
 ### `npm install`
 
 Runs to install necessuary Node modules.
+
+## Functionality
+### Text To Image
+Based on Stable Diffusion API, realize the generation of images according to the text prompts
+Integrated Stable Diffusion Model:
+-  Stable Diffusion XL1.0
+-  Stable Diffusion 1.6
