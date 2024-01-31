@@ -1,1 +1,0 @@
-# stable-diffusion-text-to-image
