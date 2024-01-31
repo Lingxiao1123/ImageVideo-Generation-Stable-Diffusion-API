@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { StabilityAIBody } from "../apis/StableDiffusionModalXL_Version1";
 import { callStabilityAIAPI_StableDiffusioXL_Version_1 } from "../apis/StableDiffusionModalXL_Version1";
+import { callStabilityAIAPI_StableDiffusin_Version_1_6 } from "../apis/StableDiffusionModalVersionOnePointSix";
 
 export const TextToImageForm: React.FC = () => {
   const initialFormData: StabilityAIBody = {
@@ -18,6 +19,7 @@ export const TextToImageForm: React.FC = () => {
 
   const [formData, setFormData] = useState<StabilityAIBody>(initialFormData);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const [modalSelect, setModalSelect] = useState<String | null>(null);
 
   const updateField = <T extends keyof StabilityAIBody>(
     field: T,

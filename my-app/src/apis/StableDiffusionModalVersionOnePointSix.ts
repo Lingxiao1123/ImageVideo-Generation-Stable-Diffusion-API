@@ -10,7 +10,7 @@ export interface StabilityAIBody {
 }
 
 // callStabilityAIAPI.ts
-export async function callStabilityAIAPI(
+export async function callStabilityAIAPI_StableDiffusin_Version_1_6(
   formData: StabilityAIBody
 ): Promise<any> {
   const API_URL =
