@@ -65,6 +65,37 @@ Integrated Stable Diffusion Model:
       SDXL v1.0: same as SDXL v0.9
       SD v1.6: must be between 320x320 and 1536x1536
   </tr>
+  <tr>
+    <td>Seed</td>
+    <td>
+      integer (Seed) [ 0 .. 4294967295 ]<br>
+      Default: 0<br>
+      Random noise seed (omit this option or use 0 for a random seed)<br>
+    </td>
+  </tr>
+   <tr>
+    <td>Cfg_Scale</td>
+    <td>
+     number (CfgScale) [ 0 .. 35 ]<br>
+     Default: 7<br>
+     How strictly the diffusion process adheres to the prompt text (higher values keep your image closer to your prompt)<br>
+    </td>
+  </tr>
+  <tr>
+    <td>Samples</td>
+    <td>
+     integer (Samples) [ 1 .. 10 ]<br>
+     Default: 1<br>
+     Number of images to generate<br>
+    </td>
+  </tr>
+  <tr>
+    <td>Text_prompts</td>
+    <td>
+     Array of objects (TextPrompts) non-empty<br>
+     An array of text prompts to use for generation.<br>
+    </td>
+  </tr>
 </table>
 
 
