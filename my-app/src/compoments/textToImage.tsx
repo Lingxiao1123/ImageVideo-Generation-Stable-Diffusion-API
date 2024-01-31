@@ -3,6 +3,10 @@ import { StabilityAIBody } from "../apis/StableDiffusionModalXL_Version1";
 import { callStabilityAIAPI_StableDiffusioXL_Version_1 } from "../apis/StableDiffusionModalXL_Version1";
 import { callStabilityAIAPI_StableDiffusin_Version_1_6 } from "../apis/StableDiffusionModalVersionOnePointSix";
 
+interface Artifact {
+  base64: string;
+}
+
 export const TextToImageForm: React.FC = () => {
   const initialFormData: StabilityAIBody = {
     steps: 40,
@@ -18,7 +22,7 @@ export const TextToImageForm: React.FC = () => {
   };
 
   const [formData, setFormData] = useState<StabilityAIBody>(initialFormData);
-  const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const [imageUrlList, setImageUrlList] = useState<string[]>([]);
   const [modelSelect, setModelSelect] = useState<String | null>(null);
 
   const updateField = <T extends keyof StabilityAIBody>(
@@ -56,18 +60,18 @@ export const TextToImageForm: React.FC = () => {
         );
       }
       if (response && response.artifacts && response.artifacts.length > 0) {
-        // Assuming the image data is returned as a Base64 encoded string
-        const imageBase64 = response.artifacts[0].base64;
-        // Convert Base64-encoded images to data URLs
-        const imageUrl = `data:image/png;base64,${imageBase64}`;
-        setImageUrl(imageUrl);
+        // 修改这里：处理多个图像
+        const imageUrls = response.artifacts.map((artifact: Artifact) => {
+          const imageBase64 = artifact.base64;
+          return `data:image/png;base64,${imageBase64}`;
+        });
+        setImageUrlList(imageUrls);
       } else {
-        // If there is no image data in the response, set imageUrl to null
-        setImageUrl(null);
+        setImageUrlList([]);
       }
     } catch (error) {
       console.error("Error:", error);
-      setImageUrl(null);
+      setImageUrlList([]);
     }
   };
 
@@ -180,7 +184,9 @@ export const TextToImageForm: React.FC = () => {
         </div>
         <button type="submit">Generate Image</button>
       </form>
-      {imageUrl && <img src={imageUrl} alt="Generated" />}
+      {imageUrlList.map((url, index) => (
+        <img key={index} src={url} alt={`Generated ${index + 1}`} />
+      ))}
     </div>
   );
 };
