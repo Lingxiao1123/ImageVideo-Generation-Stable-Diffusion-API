@@ -11,8 +11,8 @@ export const TextToImageForm: React.FC = () => {
     cfg_scale: 5,
     samples: 1,
     text_prompts: [
-      { text: "", weight: 1 },
-      { text: "", weight: 1 },
+      { text: "cat", weight: 1 },
+      { text: "dog", weight: -1 },
     ],
   };
 
@@ -115,31 +115,48 @@ export const TextToImageForm: React.FC = () => {
             onChange={(e) => updateField("samples", parseInt(e.target.value))}
           />
         </label>
-        {formData.text_prompts.map((prompt, index) => (
-          <div key={index}>
-            <label>
-              Text Prompt:
-              <input
-                type="text"
-                value={prompt.text}
-                onChange={(e) => handleTextPromptChange(index, e.target.value)}
-              />
-            </label>
-            <label>
-              Weight:
-              <input
-                type="number"
-                value={prompt.weight}
-                onChange={(e) =>
-                  handleTextPromptWeightChange(
-                    index,
-                    parseFloat(e.target.value)
-                  )
-                }
-              />
-            </label>
-          </div>
-        ))}
+        <div>
+          <label>
+            Positive Text Prompt:
+            <input
+              type="text"
+              value={formData.text_prompts[0].text}
+              onChange={(e) => handleTextPromptChange(0, e.target.value)}
+            />
+          </label>
+          <label>
+            Weight:
+            <input
+              type="number"
+              value={formData.text_prompts[0].weight}
+              onChange={(e) =>
+                handleTextPromptWeightChange(0, parseFloat(e.target.value))
+              }
+            />
+          </label>
+        </div>
+
+        {/* 负面提示（Negative Prompt） */}
+        <div>
+          <label>
+            Negative Text Prompt:
+            <input
+              type="text"
+              value={formData.text_prompts[1].text}
+              onChange={(e) => handleTextPromptChange(1, e.target.value)}
+            />
+          </label>
+          <label>
+            Weight:
+            <input
+              type="number"
+              value={formData.text_prompts[1].weight}
+              onChange={(e) =>
+                handleTextPromptWeightChange(1, parseFloat(e.target.value))
+              }
+            />
+          </label>
+        </div>
         <button type="submit">Generate Image</button>
       </form>
       {imageUrl && <img src={imageUrl} alt="Generated" />}
