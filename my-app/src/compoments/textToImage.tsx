@@ -60,7 +60,6 @@ export const TextToImageForm: React.FC = () => {
         );
       }
       if (response && response.artifacts && response.artifacts.length > 0) {
-        // 修改这里：处理多个图像
         const imageUrls = response.artifacts.map((artifact: Artifact) => {
           const imageBase64 = artifact.base64;
           return `data:image/png;base64,${imageBase64}`;
