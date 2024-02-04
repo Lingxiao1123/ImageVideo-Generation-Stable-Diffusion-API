@@ -15,7 +15,7 @@ export const TextToImageForm: React.FC = () => {
     seed: 0,
     cfg_scale: 5,
     samples: 1,
-    style_preset: "enhance",
+    // style_preset: "enhance",
     text_prompts: [
       { text: "", weight: 1 },
       { text: "", weight: -1 },
@@ -25,7 +25,7 @@ export const TextToImageForm: React.FC = () => {
   const [formData, setFormData] = useState<StabilityAIBody>(initialFormData);
   const [imageUrlList, setImageUrlList] = useState<string[]>([]);
   const [modelSelect, setModelSelect] = useState<String | null>(null);
-  const [styleSelect, setStyleSelect] = useState<String | null>(null);
+  const [styleSelect, setStyleSelect] = useState<String>("none");
 
   const updateField = <T extends keyof StabilityAIBody>(
     field: T,
@@ -50,27 +50,23 @@ export const TextToImageForm: React.FC = () => {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    const orderedFormData: StabilityAIBody = {
-      steps: formData.steps,
-      width: formData.width,
-      height: formData.height,
-      seed: formData.seed,
-      cfg_scale: formData.cfg_scale,
-      samples: formData.samples,
-      style_preset: formData.style_preset,
-      text_prompts: formData.text_prompts.sort((a, b) => b.weight - a.weight),
+
+    const requestBody: StabilityAIBody = {
+      ...formData,
+      // If styleSelect is non-null, add the style_preset attribute; otherwise do not add it
+      ...(styleSelect !== "none" && { style_preset: styleSelect }),
     };
 
     try {
       let response;
-      console.log(orderedFormData);
+      console.log(requestBody);
       if (modelSelect === "StableDiffusionXL1.0") {
         response = await callStabilityAIAPI_StableDiffusioXL_Version_1(
-          orderedFormData
+          requestBody
         );
       } else {
         response = await callStabilityAIAPI_StableDiffusin_Version_1_6(
-          orderedFormData
+          requestBody
         );
       }
       if (response && response.artifacts && response.artifacts.length > 0) {
@@ -194,9 +190,10 @@ export const TextToImageForm: React.FC = () => {
                 const newStyle = e.target.value;
                 setStyleSelect(newStyle);
                 console.log(newStyle);
-                setFormData({ ...formData, style_preset: newStyle });
+                // setFormData({ ...formData, style_preset: newStyle });
               }}
             >
+              <option value="none">None</option>
               <option value="enhance">Enhance</option>
               <option value="anime">Anime</option>
               <option value="photographic">Photographic</option>
