@@ -99,6 +99,7 @@ export const TextToImageForm: React.FC = () => {
             onChange={(e) => updateField("steps", parseInt(e.target.value))}
           />
         </label>
+        <br />
         <label>
           Width:
           <input
@@ -107,6 +108,7 @@ export const TextToImageForm: React.FC = () => {
             onChange={(e) => updateField("width", parseInt(e.target.value))}
           />
         </label>
+        <br />
         <label>
           Height:
           <input
@@ -115,6 +117,7 @@ export const TextToImageForm: React.FC = () => {
             onChange={(e) => updateField("height", parseInt(e.target.value))}
           />
         </label>
+        <br />
         <label>
           Seed:
           <input
@@ -123,6 +126,7 @@ export const TextToImageForm: React.FC = () => {
             onChange={(e) => updateField("seed", parseInt(e.target.value))}
           />
         </label>
+        <br />
         <label>
           CFG Scale:
           <input
@@ -133,6 +137,7 @@ export const TextToImageForm: React.FC = () => {
             }
           />
         </label>
+        <br />
         <label>
           Samples:
           <input
@@ -161,7 +166,6 @@ export const TextToImageForm: React.FC = () => {
             />
           </label>
         </div>
-
         <div>
           <label>
             Negative Text Prompt:
@@ -181,6 +185,7 @@ export const TextToImageForm: React.FC = () => {
               }
             />
           </label>
+          <br />
           <label>
             style_preset:
             <select
@@ -211,6 +216,7 @@ export const TextToImageForm: React.FC = () => {
               <option value="tile-texture">Tile Texture</option>
             </select>
           </label>
+          <br />
           <label>
             Model Selection:
             <select
