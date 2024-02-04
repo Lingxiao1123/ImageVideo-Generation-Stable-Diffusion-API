@@ -6,6 +6,7 @@ export interface StabilityAIBody {
   seed: number;
   cfg_scale: number;
   samples: number;
+  style_preset: string;
   text_prompts: Array<{ text: string; weight: number }>;
 }
 

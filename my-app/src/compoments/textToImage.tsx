@@ -15,6 +15,7 @@ export const TextToImageForm: React.FC = () => {
     seed: 0,
     cfg_scale: 5,
     samples: 1,
+    style_preset: "enhance",
     text_prompts: [
       { text: "", weight: 1 },
       { text: "", weight: -1 },
@@ -24,6 +25,7 @@ export const TextToImageForm: React.FC = () => {
   const [formData, setFormData] = useState<StabilityAIBody>(initialFormData);
   const [imageUrlList, setImageUrlList] = useState<string[]>([]);
   const [modelSelect, setModelSelect] = useState<String | null>(null);
+  const [styleSelect, setStyleSelect] = useState<String | null>(null);
 
   const updateField = <T extends keyof StabilityAIBody>(
     field: T,
@@ -48,15 +50,27 @@ export const TextToImageForm: React.FC = () => {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    const orderedFormData: StabilityAIBody = {
+      steps: formData.steps,
+      width: formData.width,
+      height: formData.height,
+      seed: formData.seed,
+      cfg_scale: formData.cfg_scale,
+      samples: formData.samples,
+      style_preset: formData.style_preset,
+      text_prompts: formData.text_prompts.sort((a, b) => b.weight - a.weight),
+    };
+
     try {
       let response;
+      console.log(orderedFormData);
       if (modelSelect === "StableDiffusionXL1.0") {
         response = await callStabilityAIAPI_StableDiffusioXL_Version_1(
-          formData
+          orderedFormData
         );
       } else {
         response = await callStabilityAIAPI_StableDiffusin_Version_1_6(
-          formData
+          orderedFormData
         );
       }
       if (response && response.artifacts && response.artifacts.length > 0) {
@@ -148,7 +162,6 @@ export const TextToImageForm: React.FC = () => {
           </label>
         </div>
 
-        {/* （Negative Prompt） */}
         <div>
           <label>
             Negative Text Prompt:
@@ -167,6 +180,36 @@ export const TextToImageForm: React.FC = () => {
                 handleTextPromptWeightChange(1, parseFloat(e.target.value))
               }
             />
+          </label>
+          <label>
+            style_preset:
+            <select
+              value={styleSelect as string}
+              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                const newStyle = e.target.value;
+                setStyleSelect(newStyle);
+                console.log(newStyle);
+                setFormData({ ...formData, style_preset: newStyle });
+              }}
+            >
+              <option value="enhance">Enhance</option>
+              <option value="anime">Anime</option>
+              <option value="photographic">Photographic</option>
+              <option value="digital-art">Digital Art</option>
+              <option value="comic-book">Comic Book</option>
+              <option value="fantasy-art">Fantasy Art</option>
+              <option value="line-art">Line Art</option>
+              <option value="analog-film">Analog Film</option>
+              <option value="neon-punk">Neon Punk</option>
+              <option value="isometric">Isometric</option>
+              <option value="low-poly">Low Poly</option>
+              <option value="origami">Origami</option>
+              <option value="modeling-compound">Modeling Compound</option>
+              <option value="cinematic">Cinematic</option>
+              <option value="3d-model">3D Model</option>
+              <option value="pixel-art">Pixel Art</option>
+              <option value="tile-texture">Tile Texture</option>
+            </select>
           </label>
           <label>
             Model Selection:
