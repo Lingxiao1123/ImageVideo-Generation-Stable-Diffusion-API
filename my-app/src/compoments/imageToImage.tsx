@@ -52,8 +52,6 @@ export const ImageToImageForm: React.FC = () => {
 
     const submitFormData = new FormData();
     submitFormData.append("init_image", initImage);
-
-    // 明确地追加每个字段，而不是使用 Object.keys() 遍历
     submitFormData.append("steps", formData.steps.toString());
     submitFormData.append("width", formData.width.toString());
     submitFormData.append("height", formData.height.toString());
@@ -71,7 +69,9 @@ export const ImageToImageForm: React.FC = () => {
       );
     });
 
-    // API 调用和响应处理保持不变
+    console.log(formData);
+
+    // API invoke and response
     try {
       const response = await callStabilityAIImageToImage(submitFormData);
       if (response && response.artifacts) {
@@ -199,7 +199,7 @@ export const ImageToImageForm: React.FC = () => {
         <img
           key={index}
           src={url}
-          alt={`Generated output ${index + 1}`} // 修改了描述文本
+          alt={`Generated output ${index + 1}`}
           style={{ maxWidth: "100%", marginTop: "10px" }}
         />
       ))}

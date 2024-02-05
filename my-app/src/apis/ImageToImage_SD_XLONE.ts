@@ -5,7 +5,7 @@ export interface ImageToImageRequestBody {
   seed: number;
   cfg_scale: number;
   samples: number;
-  init_image: Blob; // 使用Blob类型接受文件数据
+  init_image: Blob;
   init_image_mode: string;
   image_strength: number;
   text_prompts: Array<{ text: string; weight: number }>;
@@ -17,12 +17,14 @@ export async function callStabilityAIImageToImage(
   const API_URL =
     "https://api.stability.ai/v1/generation/stable-diffusion-xl-1024-v1-0/image-to-image";
 
+  const API_KEY = "sk-kYtpEWDlKdq4JHi9om8vrCeJYKue2PsUM5AcBruciILfPo1w";
+
   try {
     const response = await fetch(API_URL, {
       method: "POST",
       headers: {
         Accept: "application/json",
-        Authorization: "Bearer YOUR_API_KEY", // Make sure to replace YOUR_API_KEY with your actual API key
+        Authorization: `Bearer ${API_KEY}`, // Make sure to replace YOUR_API_KEY with your actual API key
       },
       body: formData,
     });
