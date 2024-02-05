@@ -1,6 +1,6 @@
 // App.tsx
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { TextToImageForm } from "./compoments/textToImage";
 import { ImageToImageForm } from "./compoments/imageToImage";
 import { MainPage } from "./compoments/mainPage";
