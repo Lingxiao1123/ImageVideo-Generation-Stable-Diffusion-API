@@ -18,7 +18,7 @@ export async function callStabilityAIAPI_StableDiffusin_Version_1_6(
     "https://api.stability.ai/v1/generation/stable-diffusion-v1-6/text-to-image";
 
   // Your API keys
-  const API_KEY = "sk-kYtpEWDlKdq4JHi9om8vrCeJYKue2PsUM5AcBruciILfPo1w";
+  const API_KEY = "sk-KHpO42S7tSX7st20BmkNkcyoThqWh8MlYD9vklDozRPzca7g";
 
   try {
     const response = await fetch(API_URL, {
