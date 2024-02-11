@@ -38,8 +38,15 @@ export const ImageToImageForm: React.FC = () => {
   };
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files[0]) {
+    if (
+      event.target.files &&
+      event.target.files[0] &&
+      event.target.files[0].type === "image/png"
+    ) {
       setInitImage(event.target.files[0]);
+    } else {
+      alert("Only PNG images are supported");
+      return;
     }
   };
 
@@ -99,7 +106,7 @@ export const ImageToImageForm: React.FC = () => {
       <form onSubmit={handleSubmit}>
         <label>
           Initial Image:
-          <input type="file" onChange={handleFileChange} />
+          <input type="file" accept="image/png" onChange={handleFileChange} />
         </label>
         <br />
         <label>
