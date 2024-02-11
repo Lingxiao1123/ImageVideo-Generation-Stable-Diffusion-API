@@ -53,13 +53,15 @@ export const ImageToImageForm: React.FC = () => {
     const submitFormData = new FormData();
     submitFormData.append("init_image", initImage);
     submitFormData.append("steps", formData.steps.toString());
-    submitFormData.append("width", formData.width.toString());
-    submitFormData.append("height", formData.height.toString());
+    //allowed dimensions are 1024x1024, 1152x896, 1216x832, 1344x768, 1536x640, 640x1536, 768x1344, 832x1216, 896x1152
+    // cannot set weight and height for V1 model, the dimension would be the same as intial image dimension
+    // submitFormData.append("width", formData.width.toString());
+    // submitFormData.append("height", formData.height.toString());
     submitFormData.append("seed", formData.seed.toString());
     submitFormData.append("cfg_scale", formData.cfg_scale.toString());
     submitFormData.append("image_strength", formData.image_strength.toString());
     submitFormData.append("samples", formData.samples.toString());
-    submitFormData.append("init_image_mode", formData.init_image_mode);
+    // submitFormData.append("init_image_mode", formData.init_image_mode);
 
     formData.text_prompts.forEach((prompt, index) => {
       submitFormData.append(`text_prompts[${index}][text]`, prompt.text);
@@ -69,6 +71,7 @@ export const ImageToImageForm: React.FC = () => {
       );
     });
 
+    console.log(submitFormData.get("init_image"));
     console.log(formData);
 
     // API invoke and response

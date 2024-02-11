@@ -17,7 +17,7 @@ export async function callStabilityAIImageToImage(
   const API_URL =
     "https://api.stability.ai/v1/generation/stable-diffusion-xl-1024-v1-0/image-to-image";
 
-  const API_KEY = "sk-kYtpEWDlKdq4JHi9om8vrCeJYKue2PsUM5AcBruciILfPo1w";
+  const API_KEY = "sk-2NuVK95ywoB3HJR5AJwtmZfZLIqj46wChnp1BdQI3zd42VWY";
 
   try {
     const response = await fetch(API_URL, {
@@ -30,7 +30,9 @@ export async function callStabilityAIImageToImage(
     });
 
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      const errorText = await response.text(); // 或者 response.json() 如果API返回JSON格式的错误信息
+      console.error(`HTTP error! status: ${response.status}`, errorText);
+      throw new Error(errorText);
     }
 
     return await response.json();
