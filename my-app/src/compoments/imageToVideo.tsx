@@ -64,17 +64,18 @@ export const ImageToVideoForm: React.FC = () => {
     }
   };
 
+  //Add time polling until video is generated
   useEffect(() => {
     const fetchVideoData = async () => {
-      if (!videoId) return; // 如果没有videoId，则直接返回
+      if (!videoId) return; // If there is no videoId, return it directly.
 
       const intervalId = setInterval(async () => {
         try {
           const response = await callStabilityAIImageToVideoGetAPI(videoId);
           if (response.finishReason === "SUCCESS" && response.video) {
-            clearInterval(intervalId); // 停止轮询
+            clearInterval(intervalId); // Stop polling
 
-            // 处理视频数据，如之前示例所示
+            // Process the video data, as shown in the previous example
             const videoBase64 = response.video;
             const videoBlob = new Blob(
               [Uint8Array.from(atob(videoBase64), (c) => c.charCodeAt(0))],
@@ -83,19 +84,19 @@ export const ImageToVideoForm: React.FC = () => {
             const videoUrl = URL.createObjectURL(videoBlob);
             setVideoUrl(videoUrl);
           } else {
-            console.log("视频生成中，请稍后再试。");
+            console.log("Video is being generated, please try again later.");
           }
         } catch (error) {
-          console.error("获取视频数据时出错:", error);
-          clearInterval(intervalId); // 如果发生错误，也停止轮询
+          console.error("Error getting video data.", error);
+          clearInterval(intervalId); // If an error occurs, also stop polling
         }
-      }, 5000); // 每5秒轮询一次，根据实际情况调整时间间隔
+      }, 5000); // Polling every 5 seconds, adjusting the time interval according to the actual situation
 
-      return () => clearInterval(intervalId); // 清理函数，组件卸载时停止轮询
+      return () => clearInterval(intervalId); // Cleanup function to stop polling when the component is uninstalled
     };
 
     fetchVideoData();
-  }, [videoId]); // 当videoId变化时触发
+  }, [videoId]); // Cleanup function to stop polling when the component is uninstalled
 
   return (
     <div>
@@ -137,7 +138,7 @@ export const ImageToVideoForm: React.FC = () => {
           />
         </label>
         <br />
-        <button type="submit">Generate Image</button>
+        <button type="submit">Generate Video</button>
       </form>
       {videoUrl && (
         <video

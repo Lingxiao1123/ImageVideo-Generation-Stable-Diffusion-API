@@ -1,7 +1,6 @@
-// 假设这是响应数据的结构，根据实际API响应调整
 export interface ImageToVideoResultResponse {
   status: "running" | "completed";
-  videoUrl?: string; // 假设当生成完成时，响应包含视频的URL
+  videoUrl?: string;
 }
 
 export async function callStabilityAIImageToVideoGetAPI(
@@ -15,7 +14,7 @@ export async function callStabilityAIImageToVideoGetAPI(
       method: "GET",
       headers: {
         Accept: "application/json",
-        Authorization: `Bearer ${API_KEY}`, // 使用实际的API密钥
+        Authorization: `Bearer ${API_KEY}`,
       },
     });
 
