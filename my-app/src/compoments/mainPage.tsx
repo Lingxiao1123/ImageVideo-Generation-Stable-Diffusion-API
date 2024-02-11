@@ -9,6 +9,9 @@ export const MainPage: React.FC = () => {
       <Link to="/image-to-image">
         <button>Image-to-Image</button>
       </Link>
+      <Link to="/image-to-video">
+        <button>Image-to-video</button>
+      </Link>
     </div>
   );
 };
