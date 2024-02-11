@@ -89,8 +89,9 @@ export const ImageToImageForm: React.FC = () => {
       const response = await callStabilityAIImageToImage(submitFormData);
       //response body : {artifacts: Array(1) 0: {base64: 'iVBORw0KGgoAAAANSUhEUgAABAAAAAQACAIAAADwf7zUAABCJ2…YpURoy9yvrI5Gi/m0bv4RVHNe9L2E/9gAAAAASUVORK5CYII=', seed: 2688336390, finishReason: 'SUCCESS'}}
       console.log(response);
-      //artifacts is an array of Object [imageDataObject,imageDataObject,imageDataObject]
+      //artifacts is an array of Object:[imageDataObject,imageDataObject,imageDataObject]
       //imageDataObject has three parameters {base64: string;seed:number;finishReason:"SUCCESS"}
+      //mapping method: traverse around the array,return with a new array
       if (response && response.artifacts) {
         const imageUrls = response.artifacts.map(
           (imageDataObject: { base64: string }) =>
