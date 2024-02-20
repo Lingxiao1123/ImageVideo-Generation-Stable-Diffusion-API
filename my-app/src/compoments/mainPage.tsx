@@ -12,6 +12,9 @@ export const MainPage: React.FC = () => {
       <Link to="/image-to-video">
         <button>Image-to-video</button>
       </Link>
+      <Link to="/tex-to-pdf">
+        <button>tex-to-pdf</button>
+      </Link>
     </div>
   );
 };
