@@ -15,6 +15,9 @@ export const MainPage: React.FC = () => {
       <Link to="/tex-to-pdf">
         <button>tex-to-pdf</button>
       </Link>
+      <Link to="/imageGallery">
+        <button>Image Gallery</button>
+      </Link>
     </div>
   );
 };

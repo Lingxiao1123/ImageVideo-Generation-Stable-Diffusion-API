@@ -5,6 +5,7 @@ import { TextToImageForm } from "./compoments/textToImage";
 import { ImageToImageForm } from "./compoments/imageToImage";
 import { ImageToVideoForm } from "./compoments/imageToVideo";
 import { LatexUploader } from "./compoments/texToDoc";
+import ImageGallery from "./compoments/imageGallery";
 import { MainPage } from "./compoments/mainPage";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path="/image-to-image" element={<ImageToImageForm />} />
         <Route path="/image-to-video" element={<ImageToVideoForm />} />
         <Route path="/tex-to-pdf" element={<LatexUploader />} />
+        <Route path="/imageGallery" element={<ImageGallery />} />
         <Route path="/" element={<MainPage />} />
       </Routes>
     </Router>
