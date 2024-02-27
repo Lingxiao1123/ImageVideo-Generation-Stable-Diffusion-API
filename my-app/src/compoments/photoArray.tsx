@@ -3,21 +3,25 @@ export const photos = [
     src: "https://cdn.openart.ai/published/wcIg9wsxdxH5lYvcaB6X/2Gzf9nA6_nDst_raw.jpg",
     width: 1,
     height: 1.7,
+    alt: "A girl with a pink hair and a yellow dress",
   },
   {
     src: "https://cdn.openart.ai/published/sv1D9Fwp1Vs4D4kguxxS/xjWnlSz1_JuX9_1024.webp",
     width: 1,
     height: 1,
+    alt: "cat",
   },
   {
     src: "https://cdn.openart.ai/published/LldG8l5lb8BF6n0IYsuL/5RkKpdzZ__PWY_raw.jpg",
     width: 3,
     height: 4,
+    alt: "A cyberpunk girl",
   },
   {
     src: "https://cdn.openart.ai/published/TD8pTPllHgrM4n23V9eU/6-Cwdfno_BQ4V_1024.webp",
     width: 4,
     height: 4,
+    alt: "a girl with a pink hair and a yellow dress",
   },
   {
     src: "https://cdn.openart.ai/published/aQJW2v8Ijxk60F3z75ed/ANF2r7EY_xkAn_1024.webp",
