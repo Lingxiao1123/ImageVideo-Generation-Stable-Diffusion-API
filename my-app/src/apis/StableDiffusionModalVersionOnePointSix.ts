@@ -18,7 +18,8 @@ export async function callStabilityAIAPI_StableDiffusin_Version_1_6(
     "https://api.stability.ai/v1/generation/stable-diffusion-v1-6/text-to-image";
 
   // Your API keys
-  const API_KEY = "sk-2NuVK95ywoB3HJR5AJwtmZfZLIqj46wChnp1BdQI3zd42VWY";
+  // const API_KEY = "sk-2NuVK95ywoB3HJR5AJwtmZfZLIqj46wChnp1BdQI3zd42VWY";
+  const API_KEY = "sk-Y80OpEySFPgMnpV6y1mJnBVu69Q397NkrpycdeFByHRBp1JL";
 
   try {
     const response = await fetch(API_URL, {
@@ -31,7 +32,8 @@ export async function callStabilityAIAPI_StableDiffusin_Version_1_6(
     });
 
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      const errorText = await response.text();
+      throw new Error(`HTTP error! status: ${response.status},${errorText}`);
     }
 
     return await response.json();
